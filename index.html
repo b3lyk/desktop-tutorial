@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b1020">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="MY LIFE">
+<link rel="manifest" href="manifest.webmanifest">
+<title>MY LIFE</title>
+<style>
+:root{color-scheme:dark;--bg:#0b1020;--panel:#141c2f;--panel2:#1a2540;--line:#293550;--text:#f4f7ff;--muted:#9aa8c2;--blue:#7c9cff;--green:#5bd6a2;--red:#ff7c8d;--gold:#f3c66b}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#172342 0%,var(--bg) 48%);color:var(--text);font:15px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh;padding-bottom:calc(82px + env(safe-area-inset-bottom))}
+button,input,select,textarea{font:inherit}button{cursor:pointer}
+.app{max-width:760px;margin:auto;padding:calc(18px + env(safe-area-inset-top)) 16px 24px}
+header{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px}
+.brand{font-weight:850;letter-spacing:2px;font-size:20px}.sub{color:var(--muted);font-size:12px;margin-top:4px}
+.pill{border:1px solid var(--line);border-radius:999px;padding:7px 10px;color:var(--muted);font-size:12px}
+h1{font-size:28px;line-height:1.1;margin:8px 0 6px}h2{font-size:17px;margin:0 0 13px}h3{font-size:14px;margin:0 0 8px}
+.muted{color:var(--muted)}.small{font-size:12px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:18px 0}
+.card{background:linear-gradient(145deg,rgba(26,37,64,.96),rgba(18,26,44,.96));border:1px solid var(--line);border-radius:18px;padding:15px;box-shadow:0 12px 30px #0002}
+.metric{font-size:23px;font-weight:750;margin-top:8px;letter-spacing:-.5px}.metric.green{color:var(--green)}.metric.red{color:var(--red)}
+.section{margin-top:22px}.row{display:flex;align-items:center;justify-content:space-between;gap:10px}.actions{display:flex;gap:8px;flex-wrap:wrap}
+.btn{border:0;border-radius:12px;background:var(--blue);color:#0b1020;font-weight:750;padding:11px 14px}
+.btn.secondary{background:var(--panel2);border:1px solid var(--line);color:var(--text)}
+.btn.danger{background:#482632;color:#ffdce1}.btn.full{width:100%}
+.tabs{position:fixed;bottom:0;left:0;right:0;z-index:5;background:#0d1424f2;backdrop-filter:blur(18px);border-top:1px solid var(--line);padding:9px 8px calc(9px + env(safe-area-inset-bottom));display:flex;justify-content:center}
+.tabrow{width:min(760px,100%);display:grid;grid-template-columns:repeat(5,1fr);gap:4px}
+.tab{background:none;border:0;color:var(--muted);font-size:11px;padding:7px 2px;border-radius:12px}.tab span{display:block;font-size:19px;margin-bottom:3px}.tab.active{background:var(--panel2);color:var(--text)}
+.view{display:none}.view.active{display:block}
+input,select,textarea{width:100%;background:#0d1527;border:1px solid var(--line);color:var(--text);border-radius:11px;padding:12px;outline:none}
+label{display:block;color:var(--muted);font-size:12px;margin:10px 0 6px}
+.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:9px}.formgrid .wide{grid-column:1/-1}
+.list{display:flex;flex-direction:column;gap:8px}.item{display:flex;align-items:center;gap:10px;background:#101a2d;border:1px solid var(--line);border-radius:13px;padding:11px}
+.itemmain{min-width:0;flex:1}.itemtitle{font-weight:650;overflow-wrap:anywhere}.meta{font-size:11px;color:var(--muted);margin-top:4px}
+.amount{font-weight:750;white-space:nowrap}.plus{color:var(--green)}.minus{color:var(--red)}
+.check{width:20px;height:20px;accent-color:var(--green)}.empty{color:var(--muted);text-align:center;padding:24px 10px;border:1px dashed var(--line);border-radius:14px}
+.progress{height:8px;background:#0b1221;border-radius:99px;overflow:hidden;margin-top:9px}.progress>i{display:block;height:100%;background:linear-gradient(90deg,var(--blue),var(--green));width:0}
+.chart{display:flex;align-items:end;gap:7px;height:130px;padding:12px 4px 0}.barwrap{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;height:100%;justify-content:end}.bar{width:100%;max-width:35px;border-radius:7px 7px 2px 2px;background:linear-gradient(180deg,#8da8ff,#536fc2);min-height:3px}.barlabel{font-size:10px;color:var(--muted)}
+.notice{background:#17243d;border:1px solid #33496f;padding:12px;border-radius:13px;color:#cbd8f3;font-size:12px;line-height:1.45}
+.modal{position:fixed;inset:0;background:#0009;display:none;align-items:end;justify-content:center;z-index:10;padding:12px}.modal.open{display:flex}.sheet{width:min(600px,100%);max-height:90vh;overflow:auto;background:#111b2f;border:1px solid var(--line);border-radius:22px;padding:18px}
+.close{border:0;background:none;color:var(--muted);font-size:23px}
+@media(min-width:600px){.grid{grid-template-columns:repeat(4,1fr)}.app{padding-left:24px;padding-right:24px}.modal{align-items:center}}
+</style>
+</head>
+<body>
+<div class="app">
+<header><div><div class="brand">MY LIFE</div><div class="sub">ТВОЯ ЖИЗНЬ. ТВОИ РЕЗУЛЬТАТЫ.</div></div><div class="pill" id="todayPill">Сегодня</div></header>
+
+<main>
+<section class="view active" id="home">
+<div class="muted small" id="dateLine"></div><h1>Твой день<br>под контролем.</h1><div class="muted">Финансы, задачи и личный прогресс — в одном месте.</div>
+<div class="grid">
+<div class="card"><div class="muted small">Доходы сегодня</div><div class="metric green" id="todayIncome">0 ₽</div></div>
+<div class="card"><div class="muted small">Расходы сегодня</div><div class="metric red" id="todayExpense">0 ₽</div></div>
+<div class="card"><div class="muted small">Баланс за всё время</div><div class="metric" id="balance">0 ₽</div></div>
+<div class="card"><div class="muted small">Задачи выполнены</div><div class="metric" id="taskCount">0/0</div></div>
+</div>
+<div class="card">
+<div class="row"><h2>Фокус на сегодня</h2><span class="pill" id="taskPercent">0%</span></div>
+<div class="progress"><i id="taskProgress"></i></div>
+<div class="muted small" style="margin-top:9px" id="focusText">Добавь задачи, чтобы отслеживать прогресс.</div>
+</div>
+<div class="section row"><h2>Быстрые действия</h2></div>
+<div class="actions"><button class="btn" onclick="openTransaction('expense')">− Добавить расход</button><button class="btn secondary" onclick="openTransaction('income')">＋ Доход</button><button class="btn secondary" onclick="switchTab('tasks')">＋ Задача</button></div>
+<div class="section"><div class="row"><h2>Последние операции</h2><button class="btn secondary" onclick="switchTab('finance')">Все</button></div><div class="list" id="recentList"></div></div>
+<div class="section"><div class="row"><h2>Последние успехи</h2><button class="btn secondary" onclick="switchTab('wins')">Все</button></div><div id="recentWins"></div></div>
+</section>
+
+<section class="view" id="finance">
+<div class="row"><div><div class="muted small">МОИ ДЕНЬГИ</div><h1>Финансы</h1></div><button class="btn" onclick="openTransaction()">＋ Операция</button></div>
+<div class="grid">
+<div class="card"><div class="muted small">Доходы за месяц</div><div class="metric green" id="monthIncome">0 ₽</div></div>
+<div class="card"><div class="muted small">Расходы за месяц</div><div class="metric red" id="monthExpense">0 ₽</div></div>
+</div>
+<div class="card"><h2>Операции</h2><div class="formgrid"><div><label>Период</label><select id="financePeriod" onchange="renderFinance()"><option value="all">Всё время</option><option value="month">Этот месяц</option><option value="year">Этот год</option></select></div><div><label>Тип</label><select id="financeType" onchange="renderFinance()"><option value="all">Все операции</option><option value="income">Доходы</option><option value="expense">Расходы</option></select></div></div><div class="list" id="transactionList" style="margin-top:12px"></div></div>
+<div class="section notice">Автоматический импорт банковских операций пока не подключён. Добавляй операции вручную; позже можно добавить импорт выписки CSV или интеграцию с поддерживаемым банком.</div>
+</section>
+
+<section class="view" id="tasks">
+<div class="row"><div><div class="muted small">ПЛАНИРОВАНИЕ</div><h1>Задачи</h1></div><button class="btn" onclick="openTask()">＋ Задача</button></div>
+<div class="card"><div class="row"><h2>На сегодня</h2><span class="pill" id="taskSummary">0 задач</span></div><div class="list" id="taskList"></div></div>
+<div class="section card"><h2>Добавить задачу</h2><label>Что нужно сделать?</label><input id="taskTitle" placeholder="Например, закончить важный проект"><div class="formgrid"><div><label>Срок</label><input id="taskDate" type="date"></div><div><label>Приоритет</label><select id="taskPriority"><option>Обычный</option><option>Высокий</option><option>Срочный</option></select></div></div><button class="btn full" style="margin-top:12px" onclick="addTask()">Сохранить задачу</button></div>
+</section>
+
+<section class="view" id="wins">
+<div class="muted small">ЛИЧНЫЙ ПРОГРЕСС</div><h1>Мои успехи</h1><div class="card"><h2>Зафиксируй свою победу</h2><label>Чем ты сегодня гордишься?</label><textarea id="winText" rows="3" placeholder="Даже небольшой шаг — это результат..."></textarea><button class="btn full" style="margin-top:12px" onclick="addWin()">＋ Записать достижение</button></div>
+<div class="section"><div class="row"><h2>История достижений</h2><span class="pill" id="winCount">0</span></div><div class="list" id="winsList"></div></div>
+</section>
+
+<section class="view" id="stats">
+<div class="muted small">ЦИФРЫ И РЕЗУЛЬТАТЫ</div><h1>Аналитика</h1>
+<div class="card"><div class="row"><h2>Финансовый отчёт</h2><select id="statsPeriod" style="width:auto" onchange="renderStats()"><option value="month">Месяц</option><option value="year">Год</option></select></div><div class="grid"><div><div class="muted small">Доходы</div><div class="metric green" id="statsIncome">0 ₽</div></div><div><div class="muted small">Расходы</div><div class="metric red" id="statsExpense">0 ₽</div></div></div><div class="muted small">Расходы по месяцам</div><div class="chart" id="expenseChart"></div><div class="row" style="margin-top:12px"><span class="muted">Разница</span><strong id="statsNet">0 ₽</strong></div></div>
+<div class="section card"><h2>Продуктивность</h2><div class="grid"><div><div class="muted small">Всего задач</div><div class="metric" id="statsTasks">0</div></div><div><div class="muted small">Выполнено</div><div class="metric green" id="statsDone">0</div></div><div><div class="muted small">Достижения</div><div class="metric" id="statsWins">0</div></div><div><div class="muted small">Выполнение</div><div class="metric" id="statsRate">0%</div></div></div></div>
+<div class="section card"><h2>Данные</h2><div class="actions"><button class="btn secondary" onclick="exportData()">Экспортировать резервную копию</button><button class="btn danger" onclick="clearData()">Очистить все данные</button></div><div class="muted small" style="margin-top:10px">Экспорт сохраняет операции, задачи и достижения в JSON-файл.</div></div>
+</section>
+</main>
+</div>
+
+<nav class="tabs"><div class="tabrow">
+<button class="tab active" data-tab="home" onclick="switchTab('home')"><span>⌂</span>Главная</button>
+<button class="tab" data-tab="finance" onclick="switchTab('finance')"><span>₽</span>Финансы</button>
+<button class="tab" data-tab="tasks" onclick="switchTab('tasks')"><span>☑</span>Задачи</button>
+<button class="tab" data-tab="wins" onclick="switchTab('wins')"><span>✦</span>Успехи</button>
+<button class="tab" data-tab="stats" onclick="switchTab('stats')"><span>▥</span>Итоги</button>
+</div></nav>
+
+<div class="modal" id="txModal" onclick="if(event.target===this)closeModal()"><div class="sheet">
+<div class="row"><h2 id="txHeading">Новая операция</h2><button class="close" onclick="closeModal()">×</button></div>
+<div class="formgrid"><div><label>Тип</label><select id="txType"><option value="expense">Расход</option><option value="income">Доход</option></select></div><div><label>Сумма, ₽</label><input id="txAmount" type="number" min="0.01" step="0.01" placeholder="0"></div><div class="wide"><label>Категория</label><select id="txCategory"><option>Продукты</option><option>Транспорт</option><option>Дом</option><option>Здоровье</option><option>Развлечения</option><option>Покупки</option><option>Образование</option><option>Работа</option><option>Зарплата</option><option>Подработка</option><option>Подарок</option><option>Другое</option></select></div><div class="wide"><label>Комментарий</label><input id="txNote" placeholder="Например, супермаркет"></div><div class="wide"><label>Дата</label><input id="txDate" type="date"></div></div>
+<button class="btn full" style="margin-top:14px" onclick="saveTransaction()">Сохранить операцию</button>
+</div></div>
+
+<script>
+const KEY='mylife-v1-data';
+const today=()=>new Date().toISOString().slice(0,10);
+const load=()=>{try{return JSON.parse(localStorage.getItem(KEY))||{transactions:[],tasks:[],wins:[]}}catch(e){return{transactions:[],tasks:[],wins:[]}}};
+let data=load();
+const save=()=>localStorage.setItem(KEY,JSON.stringify(data));
+const money=n=>new Intl.NumberFormat('ru-RU',{maximumFractionDigits:2}).format(n||0)+' ₽';
+const dateLabel=d=>new Date(d+'T12:00:00').toLocaleDateString('ru-RU',{day:'numeric',month:'short',year:'numeric'});
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const sum=(arr,type)=>arr.filter(x=>x.type===type).reduce((a,x)=>a+Number(x.amount),0);
+function switchTab(id){document.querySelectorAll('.view').forEach(x=>x.classList.toggle('active',x.id===id));document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x.dataset.tab===id));renderAll();window.scrollTo(0,0)}
+function openTransaction(type){document.getElementById('txType').value=type||'expense';document.getElementById('txDate').value=today();document.getElementById('txAmount').value='';document.getElementById('txNote').value='';document.getElementById('txModal').classList.add('open')}
+function closeModal(){document.getElementById('txModal').classList.remove('open')}
+function saveTransaction(){let amount=Number(document.getElementById('txAmount').value);if(!amount||amount<=0){alert('Укажи сумму больше нуля.');return}data.transactions.unshift({id:crypto.randomUUID(),type:document.getElementById('txType').value,amount,category:document.getElementById('txCategory').value,note:document.getElementById('txNote').value.trim(),date:document.getElementById('txDate').value||today()});save();closeModal();renderAll()}
+function removeTx(id){if(confirm('Удалить эту операцию?')){data.transactions=data.transactions.filter(x=>x.id!==id);save();renderAll()}}
+function txHTML(x){return `<div class="item"><div style="font-size:20px">${x.type==='income'?'↗':'↘'}</div><div class="itemmain"><div class="itemtitle">${esc(x.category)}${x.note?' · '+esc(x.note):''}</div><div class="meta">${dateLabel(x.date)}</div></div><div class="amount ${x.type==='income'?'plus':'minus'}">${x.type==='income'?'+':'−'}${money(x.amount)}</div><button class="close" aria-label="Удалить" onclick="removeTx('${x.id}')">×</button></div>`}
+function addTask(){let title=document.getElementById('taskTitle').value.trim();if(!title){alert('Напиши задачу.');return}data.tasks.unshift({id:crypto.randomUUID(),title,date:document.getElementById('taskDate').value||today(),priority:document.getElementById('taskPriority').value,done:false,created:today()});document.getElementById('taskTitle').value='';save();renderAll()}
+function toggleTask(id){let t=data.tasks.find(x=>x.id===id);if(t)t.done=!t.done;save();renderAll()}
+function deleteTask(id){if(confirm('Удалить задачу?')){data.tasks=data.tasks.filter(x=>x.id!==id);save();renderAll()}}
+function taskHTML(t){return `<div class="item"><input class="check" type="checkbox" ${t.done?'checked':''} onchange="toggleTask('${t.id}')"><div class="itemmain"><div class="itemtitle" style="${t.done?'text-decoration:line-through;color:#8290a9':''}">${esc(t.title)}</div><div class="meta">${dateLabel(t.date)} · ${esc(t.priority)}</div></div><button class="close" onclick="deleteTask('${t.id}')">×</button></div>`}
+function addWin(){let text=document.getElementById('winText').value.trim();if(!text){alert('Запиши своё достижение.');return}data.wins.unshift({id:crypto.randomUUID(),text,date:today()});document.getElementById('winText').value='';save();renderAll()}
+function deleteWin(id){if(confirm('Удалить достижение?')){data.wins=data.wins.filter(x=>x.id!==id);save();renderAll()}}
+function winHTML(w){return `<div class="item"><div style="font-size:20px;color:var(--gold)">✦</div><div class="itemmain"><div class="itemtitle">${esc(w.text)}</div><div class="meta">${dateLabel(w.date)}</div></div><button class="close" onclick="deleteWin('${w.id}')">×</button></div>`}
+function renderHome(){let d=today(),td=data.transactions.filter(x=>x.date===d),inc=sum(td,'income'),exp=sum(td,'expense'),allInc=sum(data.transactions,'income'),allExp=sum(data.transactions,'expense');document.getElementById('todayIncome').textContent=money(inc);document.getElementById('todayExpense').textContent=money(exp);document.getElementById('balance').textContent=money(allInc-allExp);let tasks=data.tasks.filter(x=>x.date===d),done=tasks.filter(x=>x.done).length,p=tasks.length?Math.round(done/tasks.length*100):0;document.getElementById('taskCount').textContent=done+'/'+tasks.length;document.getElementById('taskPercent').textContent=p+'%';document.getElementById('taskProgress').style.width=p+'%';document.getElementById('focusText').textContent=tasks.length?`Выполнено ${done} из ${tasks.length} задач.`:'Добавь задачи, чтобы отслеживать прогресс.';let recent=data.transactions.slice(0,4);document.getElementById('recentList').innerHTML=recent.length?recent.map(txHTML).join(''):'<div class="empty">Операций пока нет. Добавь первый расход или доход.</div>';let wins=data.wins.slice(0,3);document.getElementById('recentWins').innerHTML=wins.length?'<div class="list">'+wins.map(winHTML).join('')+'</div>':'<div class="empty">Здесь будут твои личные победы.</div>'}
+function renderFinance(){let now=new Date(),m=now.toISOString().slice(0,7),y=now.getFullYear().toString(),mt=data.transactions.filter(x=>x.date.startsWith(m));document.getElementById('monthIncome').textContent=money(sum(mt,'income'));document.getElementById('monthExpense').textContent=money(sum(mt,'expense'));let p=document.getElementById('financePeriod').value,t=document.getElementById('financeType').value;let arr=data.transactions.filter(x=>(p==='all'||(p==='month'?x.date.startsWith(m):x.date.startsWith(y)))&&(t==='all'||x.type===t));document.getElementById('transactionList').innerHTML=arr.length?arr.map(txHTML).join(''):'<div class="empty">За выбранный период операций нет.</div>'}
+function renderTasks(){let arr=[...data.tasks].sort((a,b)=>a.date.localeCompare(b.date));document.getElementById('taskSummary').textContent=arr.filter(x=>x.done).length+'/'+arr.length+' выполнено';document.getElementById('taskList').innerHTML=arr.length?arr.map(taskHTML).join(''):'<div class="empty">Пока нет задач. Добавь первую выше.</div>'}
+function renderWins(){document.getElementById('winCount').textContent=data.wins.length;document.getElementById('winsList').innerHTML=data.wins.length?data.wins.map(winHTML).join(''):'<div class="empty">Каждая большая цель начинается с маленьких побед.</div>'}
+function renderStats(){let period=document.getElementById('statsPeriod').value,now=new Date(),year=now.getFullYear(),month=now.getMonth();let arr=data.transactions.filter(x=>period==='year'?x.date.startsWith(String(year)):x.date.startsWith(now.toISOString().slice(0,7)));let inc=sum(arr,'income'),exp=sum(arr,'expense');document.getElementById('statsIncome').textContent=money(inc);document.getElementById('statsExpense').textContent=money(exp);document.getElementById('statsNet').textContent=money(inc-exp);let tasks=data.tasks,done=tasks.filter(x=>x.done).length;document.getElementById('statsTasks').textContent=tasks.length;document.getElementById('statsDone').textContent=done;document.getElementById('statsWins').textContent=data.wins.length;document.getElementById('statsRate').textContent=(tasks.length?Math.round(done/tasks.length*100):0)+'%';let vals=[];if(period==='year'){for(let i=0;i<12;i++){let key=year+'-'+String(i+1).padStart(2,'0');vals.push({label:['Я','Ф','М','А','М','И','И','А','С','О','Н','Д'][i],v:sum(data.transactions.filter(x=>x.date.startsWith(key)),'expense')})}}else{let days=new Date(year,month+1,0).getDate();for(let i=1;i<=days;i++){let key=year+'-'+String(month+1).padStart(2,'0')+'-'+String(i).padStart(2,'0');if(i%Math.ceil(days/7)===1||i===days)vals.push({label:String(i),v:sum(data.transactions.filter(x=>x.date===key),'expense')})}}let max=Math.max(1,...vals.map(x=>x.v));document.getElementById('expenseChart').innerHTML=vals.map(x=>`<div class="barwrap"><div class="bar" title="${money(x.v)}" style="height:${Math.max(3,x.v/max*100)}%"></div><div class="barlabel">${x.label}</div></div>`).join('')}
+function renderAll(){renderHome();renderFinance();renderTasks();renderWins();renderStats()}
+function exportData(){let blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='my-life-backup-'+today()+'.json';a.click();URL.revokeObjectURL(url)}
+function clearData(){if(confirm('Точно удалить все операции, задачи и достижения? Это действие нельзя отменить.')){data={transactions:[],tasks:[],wins:[]};save();renderAll()}}
+document.getElementById('dateLine').textContent=new Date().toLocaleDateString('ru-RU',{weekday:'long',day:'numeric',month:'long',year:'numeric'});document.getElementById('todayPill').textContent=new Date().toLocaleDateString('ru-RU',{day:'numeric',month:'short'});document.getElementById('taskDate').value=today();renderAll();
+if('serviceWorker' in navigator && location.protocol.startsWith('http'))navigator.serviceWorker.register('./sw.js').catch(()=>{});
+</script>
+</body></html>
